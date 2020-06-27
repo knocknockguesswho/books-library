@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Profile from '../Dashboard/composition/Profile';
-import Navbar from '../Dashboard/composition/Navbar'
-import Carousel from '../Dashboard/composition/Carousel'
+import Navbar from '../Dashboard/composition/Navbar';
+import Carousel from '../Dashboard/composition/Carousel';
+import Card from '../Dashboard/composition/Card';
 
 class Dashboard extends Component{
   constructor(props){
@@ -14,16 +15,17 @@ class Dashboard extends Component{
   
   render(){
     return(
-      <div>
+      <div style={{overflow:'hidden'}}>
           <Profile />
           <Navbar />
           <div className='main' 
           style={
             {position:'relative', 
-            left:'5%', 
-            width: '90%', 
+            left:'7.5%', 
+            width: '85%', 
             marginTop: '2%'}}>
             <Carousel />
+            <Card />
           </div>
       </div>
     )

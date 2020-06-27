@@ -26,9 +26,16 @@
     background-color: #f0f0f0;
     border-radius: 1.5rem;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .4);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.main-image:hover{
+    opacity: .9;
 }
 
 .main-image img{
+    transition: 0.2s;
     width: 100%;
     height: 150%;
 }
@@ -63,7 +70,7 @@
 .fa-chevron-left{
     position: relative;
     font-size: 2rem;
-    color: #424242;
+    color: #42424270;
     cursor: pointer;
 }
 
@@ -74,7 +81,7 @@
 .fa-chevron-right{
     position: relative;
     font-size: 2rem;
-    color: #424242;
+    color: #42424260;
     left: 100%;
     transform: translateX(-200%);
     cursor: pointer;
@@ -153,6 +160,7 @@
     background-color: #f0f0f0;
     border-radius: 1.5rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .4);
+    transition: 0.5s;
 }
 
 .next-image img{
@@ -176,3 +184,10 @@
 .next-image-title p{
     line-height: 80%;
 }
+/* 
+.slideLeft{
+    transform: translateX(-100%)
+}
+.slideRight{
+    transform: translateX(100%);
+} */

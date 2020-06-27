@@ -16,7 +16,7 @@ class Carousel extends Component{
       display:[
         {
           image: DummyImage,
-          title: 'Bumi Manusia 1',
+          title: 'Bumi Manusia',
           author: 'Pramodya Anantatoer'
         },
         {
@@ -38,7 +38,7 @@ class Carousel extends Component{
       currentSlide: this.state.nextSlide,
       prevSlide: this.state.currentSlide,
       nextSlide: this.state.prevSlide,
-    })
+    });
   }
   
   next = ()=>{
@@ -46,13 +46,12 @@ class Carousel extends Component{
       currentSlide: this.state.prevSlide,
       prevSlide: this.state.nextSlide,
       nextSlide: this.state.currentSlide,
-    })
+    });
   }
   
   render(){
     return(
       <div className='carousel-container'>
-
         <div className='prev-carousel'>
           <div className='prev-image'>
             <img src={this.state.display[this.state.prevSlide].image}></img>
@@ -69,7 +68,9 @@ class Carousel extends Component{
             <i className="fa fa-chevron-right" onClick={this.next}></i>         
           </div>
           <div className='main-image'>
-            <img src={this.state.display[this.state.currentSlide].image}></img>
+            <img src={this.state.display[this.state.nextSlide].image} style={{right:'-100%', position:'absolute'}} className='next-slide'></img>
+            <img src={this.state.display[this.state.prevSlide].image} style={{left:'-100%', position:'absolute'}} className='prev-slide'></img>
+            <img src={this.state.display[this.state.currentSlide].image} className='current-slide'></img>
           </div>
           <div className='image-title'>
             <p className='books-title' style={{fontSize:'2rem', fontWeight:'600'}}>{this.state.display[this.state.currentSlide].title}</p>
