@@ -1,19 +1,22 @@
-
+*{
+    box-sizing: border-box;
+    user-select: none;
+}
 
 .card-container{
     height: 350px;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     overflow-x: hidden;
-    flex-basis: 25%;
+    justify-content: space-around;
 }
 
 .card-content{
-    max-width: 25%;
+    width: 25%;
     overflow: hidden;
+    margin: 1% 1%;
     flex-basis: 100%;
-    margin: 2% 2%;
     border-radius: 1.5rem;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
     display: flex;
@@ -40,8 +43,7 @@
 }
 
 .caption{
-    box-sizing: border-box;
-    background-color: aqua;
+    word-break: break-all;
 }
 
 @media screen and (max-width:1000px){

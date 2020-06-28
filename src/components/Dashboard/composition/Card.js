@@ -42,7 +42,7 @@ class Card extends Component{
             </div>
             <div className='book-caption'>
               <p style={{textAlign:'center', marginTop:'2%', fontSize:'1.2em', fontWeight:'600'}}>Bumi Manusia</p>
-              <p style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</p>
+              <div className='caption' style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</div>
             </div>
           </div>
           <div className='card-content'>
@@ -51,7 +51,7 @@ class Card extends Component{
             </div>
             <div className='book-caption'>
               <p style={{textAlign:'center', marginTop:'2%', fontSize:'1.2em', fontWeight:'600'}}>Dilan</p>
-              <p style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</p>
+              <div className='caption' style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</div>
             </div>
           </div>
           <div className='card-content'>
@@ -60,7 +60,7 @@ class Card extends Component{
             </div>
             <div className='book-caption'>
               <p style={{textAlign:'center', marginTop:'2%', fontSize:'1.2em', fontWeight:'600'}}>Kambing Jantan</p>
-              <p style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</p>
+              <div className='caption' style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</div>
             </div>
           </div>
           <div className='card-content'>
@@ -69,7 +69,7 @@ class Card extends Component{
             </div>
             <div className='book-caption'>
               <p style={{textAlign:'center', marginTop:'2%', fontSize:'1.2em', fontWeight:'600'}}>Kambing Jantan</p>
-              <p style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</p>
+              <div className='caption' style={{marginTop:'-5%'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor metus, dapibus nec dui vitae, commodo viverra ipsum.</div>
             </div>
           </div>
         </div>

@@ -25,6 +25,7 @@ class Navbar extends Component{
   render(){
     return(
       <div className='navbar-container'>
+
         <div className='menu-container'>
           <div className='menu-a'>
             <span onClick={this.menuDropdown_A}>All Categories &#9662;</span>
@@ -48,6 +49,7 @@ class Navbar extends Component{
             </div>
           </div>
         </div>
+        
         <div className='search-input'>
             {/* <i class="fa fa-search" style={{opacity: '.3'}}></i> */}
             <input type='text' name='search' placeholder='Search book' aria-label='Search' autoComplete='off'></input>

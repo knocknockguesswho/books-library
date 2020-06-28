@@ -23,7 +23,9 @@
 }
 
 .content-none{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .5s, opacity .5s linear
 }
 
 .inactive{
@@ -46,6 +48,11 @@
     margin-top: 15%;
     font-weight: 600;
     font-size: 1.7em;
+    transition: .15s;
+}
+
+.navigator li:hover{
+    opacity: .8;
 }
 
 .avatar li{

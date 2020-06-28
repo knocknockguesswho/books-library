@@ -1,19 +1,27 @@
-import React, { useState } from 'react'
-import '../assets/styles/Profile.css'
+import React, { useState } from 'react';
+import Modal from '../composition/topping/Modal';
+import ToggleBurger from '../composition/topping/ToggleBurger'
+import '../assets/styles/Profile.css';
 
 function Profile() {
-  const [active, setInactive] = useState(false);
+  const [active, setActive] = useState(false);
   const toggleNavbar = () => {
-    setInactive(!active);
+    if(active){
+      setPopUp(false)
+    }
+    setActive(!active);
   };
+  const [popUp, setPopUp] = useState(false);
+  const handlePopUp = () =>{
+    setPopUp(!popUp);
+  }
   return(
     <>
     <div className={active ? 'sidebar-container active' : 'sidebar-container inactive'}>
-    
-      <div className='hamburger'>
-       <i className="fa fa-bars" aria-hidden="true" onClick={toggleNavbar} style={{cursor: 'pointer'}}></i>
-      </div>
 
+      <div onClick={toggleNavbar}>
+        <ToggleBurger />
+      </div>
       <div className={active ? 'content-link' : 'content-link content-none'}>
         <ul className='avatar'>
           <li></li>
@@ -22,7 +30,8 @@ function Profile() {
         <ul className='navigator'>
           <li>Explore</li>
           <li>History</li>
-          <li>Add books</li>
+          <div><Modal popUp={popUp} handlePopUp={handlePopUp}/>
+          </div>
         </ul>
       </div>
 
