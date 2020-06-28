@@ -39,7 +39,7 @@ class Modal extends Component{
       width: '90%',
       height: '90%',
       margin: 'auto auto',
-      boxShadow: '0 10px 30px 0 rgba(0, 0, 0, .1)',
+      boxShadow: '0 5px 10px 0 rgba(0, 0, 0, .3)',
       borderRadius: '1.5em'
     }
 

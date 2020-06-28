@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Books from '../components/Books';
 import Dashboard from '../components/Dashboard/Dashboard';
 
 class Home extends Component{
