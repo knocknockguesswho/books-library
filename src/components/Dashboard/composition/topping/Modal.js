@@ -5,9 +5,6 @@ class Modal extends Component{
       super(props);
   }
 
-  componentDidMount(){
-  }
-
   
   render(){
     const popUp_inActive = {

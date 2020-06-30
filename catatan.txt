@@ -1,0 +1,2 @@
+get book detail from card onClick.
+make book details as page.

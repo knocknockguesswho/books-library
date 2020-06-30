@@ -30,7 +30,8 @@ function Profile() {
         <ul className='navigator'>
           <li>Explore</li>
           <li>History</li>
-          <div><Modal popUp={popUp} handlePopUp={handlePopUp}/>
+          <div>
+            <Modal popUp={popUp} handlePopUp={handlePopUp} />
           </div>
         </ul>
       </div>

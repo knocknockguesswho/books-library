@@ -49,6 +49,7 @@
     font-weight: 600;
     font-size: 1.7em;
     transition: .15s;
+    user-select: none;
 }
 
 .navigator li:hover{
