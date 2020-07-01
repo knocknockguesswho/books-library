@@ -1,14 +1,39 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Modal from '../topping/Modal';
+import SuccessPopUp from '../topping/SuccessPopup'
 
 
 class Book extends Component{
   constructor(props){
     super(props);
     this.state = {
-      books: {...this.props.data}
+      books: {...this.props.data},
+      editStatus: false,
+      deleteStatus: false,
+      action: 'Edit Data'
     }
-    console.log(this.props)
   }
+
+  handlePopUpEdit = () =>{
+    this.setState({
+    editStatus: !this.state.editStatus
+    })
+  }
+
+  handlePopUpDelete = () =>{
+    this.setState({
+      deleteStatus: !this.state.deleteStatus
+    })
+  }
+
+  backHome = () =>{
+    this.props.getBookDetail()
+    this.setState({
+      editStatus: false
+    })
+  }
+
+
   
   render(){
 
@@ -23,7 +48,7 @@ class Book extends Component{
     
     const main_modal = {
       flex: '1.1',
-      display: 'flex'
+      display: 'flex',
     }
 
     const description = {
@@ -58,25 +83,42 @@ class Book extends Component{
       fontSize:'1.5em',
       fontWeight:'500',
       textShadow: '1px 0px 2px rgba(0, 0, 0, .3)',
+      userSelect: 'none'
+    }
+
+    const back_home = {
+    position:'absolute', 
+    width:'60px', 
+    height:'60px', 
+    top:'2%', 
+    left:'1%', 
+    zIndex:'1', 
+    backgroundColor:'white', 
+    fontSize:'2rem', 
+    textAlign:'center', 
+    borderRadius:'50%', 
+    boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', 
+    cursor:'pointer'
     }
 
     return(
+      <>
       <div style={{
       backgroundColor:'white', 
       width:'100vw', 
-      height:'992px', 
+      height:'1007px', 
       display: 'flex',
       flexDirection: 'column'}}>
         <div style={banner}>
         <div style={{width:'100%'}}>
-          <div style={{position:'absolute', width:'60px', height:'60px', top:'2%', left:'1%', zIndex:'1', backgroundColor:'white', fontSize:'2rem', textAlign:'center', borderRadius:'50%', boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', cursor:'pointer'}}>
-            <i className="fa fa-arrow-left" style={{verticalAlign:'-35%', color:'#424242'}} onClick={this.props.getBookDetail}></i>
+          <div onClick={this.backHome} style={back_home}>
+            <i className="fa fa-arrow-left" style={{verticalAlign:'-35%', color:'#424242'}}> </i>
           </div>
           <div style={edit__delete}>
-            <div style={{margin:'0 5%', cursor:'pointer'}}>
+            <div style={{margin:'0 5%', cursor:'pointer'}} onClick={this.handlePopUpEdit}>
               Edit
             </div>
-            <div style={{margin:'0 5%', cursor:'pointer'}}>
+            <div style={{margin:'0 5%', cursor:'pointer'}} onClick={this.handlePopUpDelete}>
               Delete
             </div>
           </div>
@@ -98,7 +140,10 @@ class Book extends Component{
             <div style={{height:'50px', width:'150px', backgroundColor:'#FBCC38', margin:'0 auto', position:"relative", bottom:'-250px', color:'white', paddingTop:'3%', borderRadius:'.8em', boxShadow: '0 2px 6px 0 rgba(0, 0, 0, .3)', cursor:'pointer'}}>Borrow</div>
           </div>
         </div>
+        <Modal status={this.state.editStatus} action={this.state.action} handlePopUp={this.handlePopUpEdit}/>
+        <SuccessPopUp title={this.state.books.title} status={this.state.deleteStatus} handlePopUp={this.handlePopUpDelete}/>
       </div>
+      </>
     )
   }
 }

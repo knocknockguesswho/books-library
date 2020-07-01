@@ -5,29 +5,39 @@ class Modal extends Component{
       super(props);
   }
 
-  
+
   render(){
     const popUp_inActive = {
       visibility: 'hidden',
       opacity: '0',
       transition: 'visibility .1s, opacity .1s linear',
-      cursor: 'default'
+      cursor: 'default',
+      zIndex: '99',
+      position: 'absolute',
+      width: '1200px',
+      height:'950px',
+      top: '7%',
+      left: '450px'
+      
     }
-
+    
     const popUp_active = {
       visibility: 'visible',
       opacity: '1',
       transition: 'all .1s opacity .1s linear',
-      cursor: 'default'
+      cursor: 'default',
+      zIndex: '99',
+      position: 'absolute',
+      width: '1200px',
+      height:'950px',
+      top: '7%',
+      left: '450px'
+
     }
 
     const modal_container = {
-      width: '300%',
-      height: '80%',
-      position: 'absolute',
-      left: '100%',
-      top: '50%',
-      transform: 'translateY(-50%)',
+      width: '100%',
+      height: '100%',
       padding: '10%, 15%'
     }
 
@@ -78,20 +88,15 @@ class Modal extends Component{
       borderRadius: '.4em'
     }
 
-    const button_hover = {
-      backgroundColor: '#fbcc3880'
-    }
-
 
     return(
       <>
-        <li onClick={this.props.handlePopUp}>Add books</li>
-        <div style={this.props.popUp ? popUp_active : popUp_inActive}>
+        <div style={this.props.status ? popUp_active : popUp_inActive}>
           <div style={modal_container}>
             <div style={modal_input}>
               <div style={close_button} onClick={this.props.handlePopUp}>&#10006;</div>
               <form style={form_style}>
-                <h3 style={{marginBottom:'5%'}}>Add Data</h3>
+                <h3 style={{marginBottom:'5%'}}>{this.props.action}</h3>
                 <div style={{height:'10%', display: 'flex', flexDirection:'row'}}>
                   <div style={form_label}>Image URL</div>
                   <div style={form_container}>

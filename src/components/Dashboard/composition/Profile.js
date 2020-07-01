@@ -6,14 +6,23 @@ import '../assets/styles/Profile.css';
 function Profile() {
   const [active, setActive] = useState(false);
   const toggleNavbar = () => {
-    if(active){
-      setPopUp(false)
-    }
     setActive(!active);
+      if(active){
+        setPopUp({...popUp, status: false})
+        document.body.style.overflow = 'unset';
+      }
   };
-  const [popUp, setPopUp] = useState(false);
+  const [popUp, setPopUp] = useState({
+    status:false,
+    action: 'Add Data'
+  });
   const handlePopUp = () =>{
-    setPopUp(!popUp);
+    if(popUp.status===false){
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    setPopUp({...popUp, status: !popUp.status});
   }
   return(
     <>
@@ -30,12 +39,10 @@ function Profile() {
         <ul className='navigator'>
           <li>Explore</li>
           <li>History</li>
-          <div>
-            <Modal popUp={popUp} handlePopUp={handlePopUp} />
-          </div>
+          <li onClick={handlePopUp}>Add books</li>
         </ul>
       </div>
-
+      <Modal status={popUp.status} action={popUp.action} handlePopUp={handlePopUp}/>
     </div>
     </>
   )

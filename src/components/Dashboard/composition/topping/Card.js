@@ -1,6 +1,6 @@
 import React, { useState, Component } from 'react';
 import Book from '../topping/Book'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 
 const Card = (props) => {
@@ -8,7 +8,7 @@ const Card = (props) => {
   //useState
   
   const [detail, setDetail] = useState({
-    status:false,
+    status: false,
     data: props.data
   });
   const getBookDetail = ()=>{
@@ -19,6 +19,7 @@ const Card = (props) => {
     }
     setDetail({...detail, status: !detail.status})
   }
+
 
   //useEffect
 
