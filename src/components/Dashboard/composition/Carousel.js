@@ -39,6 +39,7 @@ class Carousel extends Component{
       prevSlide: this.state.currentSlide,
       nextSlide: this.state.prevSlide,
     });
+    console.log(this.props)
   }
   
   next = ()=>{

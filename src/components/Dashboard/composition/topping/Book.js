@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../topping/Modal';
-import SuccessPopUp from '../topping/SuccessPopup'
+import SuccessPopUp from '../topping/SuccessPopup';
+import parse from 'html-react-parser';
 
 
 class Book extends Component{
@@ -10,20 +11,27 @@ class Book extends Component{
       books: {...this.props.data},
       editStatus: false,
       deleteStatus: false,
-      action: 'Edit Data'
+      action: 'Edit Data',
+      name: this.props.name,
+      role: this.props.role
     }
   }
 
   handlePopUpEdit = () =>{
-    this.setState({
-    editStatus: !this.state.editStatus
-    })
+    if(this.state.role===1){
+      this.setState({
+      editStatus: !this.state.editStatus
+      })
+    }
   }
 
   handlePopUpDelete = () =>{
-    this.setState({
-      deleteStatus: !this.state.deleteStatus
-    })
+    if(this.state.role===1){
+      this.setState({
+        deleteStatus: !this.state.deleteStatus
+      })
+    }
+    console.log(this.props)
   }
 
   backHome = () =>{
@@ -32,6 +40,7 @@ class Book extends Component{
       editStatus: false
     })
   }
+
 
 
   
@@ -101,6 +110,7 @@ class Book extends Component{
     cursor:'pointer'
     }
 
+    
     return(
       <>
       <div style={{
@@ -123,7 +133,7 @@ class Book extends Component{
             </div>
           </div>
         </div>
-          <img src={this.state.books.image} style={banner_image}></img>
+          <img src={`http://localhost:3000/uploads/${this.state.books.image}`} style={banner_image}></img>
         </div>
         <div style={main_modal}>
           <div style={description}>
@@ -136,12 +146,16 @@ class Book extends Component{
             <p style={{marginTop:'2%', fontSize:'1.2em', fontWeight:'500'}}>{this.state.books.description}</p>
           </div>
           <div style={borrow_button_container}>
-            <img src={this.state.books.image} style={{maxWidth:'250px', backgroundColor:'#FBCC38', margin:'0 auto', boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', borderRadius:'.8em'}}></img>
+            <img src={`http://localhost:3000/uploads/${this.state.books.image}`} style={{maxWidth:'250px', backgroundColor:'#FBCC38', margin:'0 auto', boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', borderRadius:'.8em'}}></img>
             <div style={{height:'50px', width:'150px', backgroundColor:'#FBCC38', margin:'0 auto', position:"relative", bottom:'-250px', color:'white', paddingTop:'3%', borderRadius:'.8em', boxShadow: '0 2px 6px 0 rgba(0, 0, 0, .3)', cursor:'pointer'}}>Borrow</div>
           </div>
         </div>
         <Modal status={this.state.editStatus} action={this.state.action} handlePopUp={this.handlePopUpEdit}/>
-        <SuccessPopUp title={this.state.books.title} status={this.state.deleteStatus} handlePopUp={this.handlePopUpDelete}/>
+        <SuccessPopUp title={this.state.books.title} 
+        status={this.state.deleteStatus} 
+        handlePopUp={this.handlePopUpDelete}
+        message={parse(`Data <b>${this.state.books.title}</b> berhasil dihapus!`)}
+        />
       </div>
       </>
     )

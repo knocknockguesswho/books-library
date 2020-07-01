@@ -2,10 +2,16 @@ get book detail from card onClick.
 make book details as page.
 
 
-bug:
+bugs:
 1.'Add Books' modal (found! on modal container height)
 2.closing 'Book' modal with opened 'Edit' modal. when back to open that closed 'Book' modal, the 'Edit' modal was still active (check all ternary operator that set element to be active state. modify it! || handlePopUp are using local state, not parent state)
+3.users can still clicking another elements even modal has popped up
 
 not-responsive:
 1. all modal position 
 2. 'Book' modal
+
+
+probs:
+1.TypeError: Cannot read property 'isLoggedin' of undefined while directly route to '/'
+2.carousel should be manually input image on 3 items of carousel

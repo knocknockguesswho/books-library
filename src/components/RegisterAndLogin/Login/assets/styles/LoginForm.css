@@ -25,11 +25,11 @@
     overflow-x: hidden;
 }
 
-.login-button-container{
+.submit-button-container{
     position: relative;
 }
 
-.login-button-container button{
+.submit-button-container button{
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     margin-right: 10px;
@@ -37,11 +37,11 @@
     user-select: none;
 }
 
-.login-button-container a:hover{
+.submit-button-container a:hover{
     text-decoration: none;
 }
 
-.login-button{
+.submit-button{
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     margin-right: 10px;
@@ -53,7 +53,7 @@
     color: white;
 }
 
-.register-button{
+.link-button{
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     margin-right: 10px;
@@ -65,12 +65,12 @@
     color: #000000;
 }
 
-.login-button:hover{
+.submit-button:hover{
     background-color: rgba(0, 0, 0, .8);
     color: white;
 }
 
-.register-button:hover{
+.link-button:hover{
     background-color: rgba(0, 0, 0, 0.05);
 }
 

@@ -9,7 +9,10 @@ const Card = (props) => {
   
   const [detail, setDetail] = useState({
     status: false,
-    data: props.data
+    data: props.data,
+    username: props.location.state.username,
+    role: props.location.state.role,
+    image: ''
   });
   const getBookDetail = ()=>{
     if(detail.status===false){
@@ -18,7 +21,10 @@ const Card = (props) => {
       document.body.style.overflow = 'unset';
     }
     setDetail({...detail, status: !detail.status})
+    console.log(props.data)
   }
+
+
 
 
   //useEffect
@@ -72,10 +78,9 @@ const Card = (props) => {
   return (
     
     <>
-    
     <div className='card-box' style={card_box} onClick={getBookDetail}>
       <div className='book-image' style={book_image}>
-        <img src={props.data.image} style={book_image__object}></img>
+        <img src={`http://localhost:3000/uploads/${props.data.image}`} style={book_image__object}/>
       </div>
       <div className='book-caption' style={book_caption}>
         <p style={{textAlign:'center', marginTop:'2%', fontSize:'1.5em', fontWeight:'600'}}>{props.data.title}</p>
@@ -83,7 +88,7 @@ const Card = (props) => {
       </div>
     </div>
     <div style={detail.status? detail_active : detail_inactive}>
-      <Book detail={detail.status} getBookDetail={getBookDetail} data={detail.data}/>
+      <Book getBookDetail={getBookDetail} data={detail.data} role={detail.role} name={detail.username}/>
     </div>
     </>
   )

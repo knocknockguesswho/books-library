@@ -14,7 +14,6 @@
 }
 .active{
     left: 0%;
-    margin-right: 20%;
     animation: active 0.5s ease-out;
 }
 
@@ -67,7 +66,7 @@
 .avatar li:first-child{
     width: 150px;
     height: 150px;
-    background: url('../images/avatar.png');
+    background-color: #424242;
     border-radius: 150px;
 }
 
@@ -96,4 +95,8 @@
     to{
         left: 0%;
     }
+}
+
+@media screen and (max-width: 1490px){
+
 }

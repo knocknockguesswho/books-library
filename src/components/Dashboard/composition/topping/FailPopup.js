@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-const SuccessPopUp = (props) =>{
+const FailPopUp = (props) =>{
 
 
   // const [inactive, setInactive] = useState({
@@ -56,6 +56,18 @@ const SuccessPopUp = (props) =>{
     float: 'right'
   }
 
+
+
+    // switch (props.message) {
+    //   case 'delete':
+    //     <p>Data <b>{props.title}</b> berhasil dihapus!</p>
+    //   case 'register':
+    //     <p>Thank you for signing up.</p>
+    //   default:
+    //     break;
+    // }
+    // }
+
   return(
       
     <>
@@ -65,7 +77,7 @@ const SuccessPopUp = (props) =>{
           <p style={{cursor: 'pointer', height:'1em'}} onClick={props.handlePopUp}>&#10006;</p>
           </div>
           <div style={{marginTop:'10%'}}>
-            <i className="fa fa-check-circle" style={{fontSize: '10rem',color: 'rgb(0, 129, 75)'}}></i>
+            <p style={{fontSize: '10rem',color: '#000'}}>&#10006;</p>
             <p style={{fontSize:'2em'}}>{props.message}</p>
           </div>
         </div>
@@ -74,4 +86,4 @@ const SuccessPopUp = (props) =>{
   )
 }
 
-export default SuccessPopUp;
+export default FailPopUp;

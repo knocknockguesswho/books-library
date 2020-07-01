@@ -8,15 +8,12 @@ import Cards from './composition/Cards';
 class Dashboard extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      isLoggedin: true
-    }
   }
   
   render(){
     return(
       <div style={{overflow:'hidden'}}>
-          <Profile />
+          <Profile {...this.props} />
           <Navbar />
           <div className='main' 
             style={
@@ -26,8 +23,8 @@ class Dashboard extends Component{
               marginTop: '2%'}
             }
           >
-            <Carousel />
-            <Cards books={this.props.data} {...this.props}/>
+            <Carousel {...this.props}/>
+            <Cards books={this.props.location.state.books} {...this.props}/>
           </div>
       </div>
     )
