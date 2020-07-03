@@ -66,13 +66,14 @@ class LoginForm extends Component{
         this.setState({
           isLoggedin: res.data.success,
           role: res.data.data[0].role,
-          avatar: res.data.data[0].avatar
+          avatar: res.data.data[0].avatar,
+          status: true
         })
       })
       .catch((err)=>{
-        if(err.response.status==400){
-          this.setState({status: true})
-        }
+        // if(err.response.status==400){
+        //   this.setState({status: true})
+        // }
         console.log(err.response)
       })
     }

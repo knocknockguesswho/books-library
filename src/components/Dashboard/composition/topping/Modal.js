@@ -14,14 +14,14 @@ class Modal extends Component{
 
   handleAddData = (event)=>{
     event.preventDefault();
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('title', this.state.title);
     formData.append('description', this.state.description);
     formData.append('image', this.state.image);
     axios({
       method: 'POST',
-      url: 'localhost:3000/admin/post/book_table',
+      url: 'http://localhost:3000/admin/post/book_table',
       data: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -29,13 +29,48 @@ class Modal extends Component{
       }
     })
     .then((res)=>{
+      this.props.handlePopUp();
       console.log(res)
     })
     .catch((err)=>{
       console.log(err)
     })
   }
+  
+  handleEditData = (event)=>{
+    event.preventDefault();
+    const token = localStorage.getItem('token')
+    const formData = new FormData();
+    formData.append('title', this.state.title);
+    formData.append('description', this.state.description);
+    formData.append('image', this.state.image);
+    axios({
+      method: 'PUT',
+      url: `http://localhost:3000/admin/2`,
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': token
+      }
+    })
+    .then((res)=>{
+      this.props.handlePopUp();
+      console.log(this.props)
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+      console.log(this.props)
+    })
+  }
 
+  decideCRUD = () =>{
+    if(this.props.action == 'Add Data'){
+      return this.handleAddData
+    } else if(this.props.action == 'Edit Data'){
+      return this.handleEditData
+    }
+  }
 
   render(){
     const popUp_inActive = {
@@ -116,37 +151,44 @@ class Modal extends Component{
       height: '60%',
       color: '#fffdfd',
       fontSize: '1.2em',
-      borderRadius: '.4em'
+      borderRadius: '.4em',
+      textAlign: 'center',
+      cursor: 'pointer'
     }
 
+
+    
     return(
       <>
         <div style={this.props.status ? popUp_active : popUp_inActive}>
           <div style={modal_container}>
             <div style={modal_input}>
               <div style={close_button} onClick={this.props.handlePopUp}>&#10006;</div>
-              <form style={form_style} onSubmit={this.handleAddData}>
+
+              <form style={form_style} 
+              onSubmit={this.decideCRUD()}>
+
                 <h3 style={{marginBottom:'5%'}}>{this.props.action}</h3>
                 <div style={{height:'10%', display: 'flex', flexDirection:'row'}}>
                   <div style={form_label}>Image URL</div>
                   <div style={form_container}>
-                    <input type='file' placeholder='Image URL...' required autoComplete='off' onChange={(e)=>this.setState({image: e.target.files})}></input>
+                    <input type='file' placeholder='Image URL...' autoComplete='off' onChange={(e)=>this.setState({image: e.target.files})}></input>
                   </div>
                 </div>
                 <div style={{height:'10%', display: 'flex', flexDirection:'row'}}>
                   <div style={form_label}>Title</div>
                   <div style={form_container}>
-                  <input type='text' placeholder='Title...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250'}} required autoComplete='off' value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})}></input>
+                  <input type='text' placeholder='Title...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250'}} autoComplete='off' value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})}></input>
                   </div>
                 </div>
                 <div style={{height:'45%', lineHeight:'-100%',display: 'flex', flexDirection:'row'}}>
                   <div style={form_label}>Description</div>
                   <div style={form_container}>
-                  <textarea type='text' placeholder='Description...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250', resize:'none'}} required autoComplete='off' value={this.state.description} onChange={(e)=>this.setState({description: e.target.value})}></textarea>
+                  <textarea type='text' placeholder='Description...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250', resize:'none'}} autoComplete='off' value={this.state.description} onChange={(e)=>this.setState({description: e.target.value})}></textarea>
                   </div>
                 </div>
                 <div style={{height:'10%', marginTop:'1%', textAlign:'right'}}>
-                  <button style={save_button}>Save</button>
+                  <input type='submit' style={save_button} value='Save'></input>
                 </div>
               </form>
             </div>

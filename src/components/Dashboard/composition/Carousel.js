@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import '../assets/styles/Carousel.css';
-import DummyImage from '../assets/images/BumiManusia.jpg';
-import DummyImage2 from '../assets/images/dilan.jpg';
-import DummyImage3 from '../assets/images/kambing_jantan.jpg'
 
 
 class Carousel extends Component{
@@ -15,19 +12,19 @@ class Carousel extends Component{
       nextSlide: 1,
       display:[
         {
-          image: DummyImage,
-          title: 'Bumi Manusia',
-          author: 'Pramodya Anantatoer'
+          image: this.props.location.state.books[0].image,
+          title: this.props.location.state.books[0].title,
+          author: this.props.location.state.books[0].author
         },
         {
-          image: DummyImage2,
-          title: 'Dilan',
-          author: 'Pidi Baiq'
+          image: this.props.location.state.books[1].image,
+          title: this.props.location.state.books[1].title,
+          author: this.props.location.state.books[1].author
         },
         {
-          image: DummyImage3,
-          title: 'Kambing Jantan',
-          author: 'Raditya Dika'
+          image: this.props.location.state.books[2].image,
+          title: this.props.location.state.books[2].title,
+          author: this.props.location.state.books[2].author
         }
       ]
     }
@@ -55,7 +52,7 @@ class Carousel extends Component{
       <div className='carousel-container'>
         <div className='prev-carousel'>
           <div className='prev-image'>
-            <img src={this.state.display[this.state.prevSlide].image}></img>
+            <img src={`http://localhost:3000/uploads/${this.state.display[this.state.prevSlide].image}`} />
           </div>
           <div className='prev-image-title'>
             <p className='books-title' style={{fontSize:'1.5rem', fontWeight:'600'}}>{this.state.display[this.state.prevSlide].title}</p>
@@ -71,7 +68,7 @@ class Carousel extends Component{
           <div className='main-image'>
             <img src={this.state.display[this.state.nextSlide].image} style={{right:'-100%', position:'absolute'}} className='next-slide'></img>
             <img src={this.state.display[this.state.prevSlide].image} style={{left:'-100%', position:'absolute'}} className='prev-slide'></img>
-            <img src={this.state.display[this.state.currentSlide].image} className='current-slide'></img>
+            <img src={`http://localhost:3000/uploads/${this.state.display[this.state.currentSlide].image}`} className='current-slide' />
           </div>
           <div className='image-title'>
             <p className='books-title' style={{fontSize:'2rem', fontWeight:'600'}}>{this.state.display[this.state.currentSlide].title}</p>
@@ -81,7 +78,7 @@ class Carousel extends Component{
 
         <div className='next-carousel'>
         <div className='next-image'>
-          <img src={this.state.display[this.state.nextSlide].image}></img>
+          <img src={`http://localhost:3000/uploads/${this.state.display[this.state.nextSlide].image}`} />
         </div>
         <div className='next-image-title'>
             <p className='books-title' style={{fontSize:'1.5rem', fontWeight:'600'}}>{this.state.display[this.state.nextSlide].title}</p>

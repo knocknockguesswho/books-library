@@ -23,6 +23,7 @@ class Book extends Component{
       editStatus: !this.state.editStatus
       })
     }
+    console.log(this.props)
   }
 
   handlePopUpDelete = () =>{
@@ -40,8 +41,6 @@ class Book extends Component{
       editStatus: false
     })
   }
-
-
 
   
   render(){
@@ -96,18 +95,18 @@ class Book extends Component{
     }
 
     const back_home = {
-    position:'absolute', 
-    width:'60px', 
-    height:'60px', 
-    top:'2%', 
-    left:'1%', 
-    zIndex:'1', 
-    backgroundColor:'white', 
-    fontSize:'2rem', 
-    textAlign:'center', 
-    borderRadius:'50%', 
-    boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', 
-    cursor:'pointer'
+      position:'absolute', 
+      width:'60px', 
+      height:'60px', 
+      top:'2%', 
+      left:'1%', 
+      zIndex:'1', 
+      backgroundColor:'white', 
+      fontSize:'2rem', 
+      textAlign:'center', 
+      borderRadius:'50%', 
+      boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', 
+      cursor:'pointer'
     }
 
     

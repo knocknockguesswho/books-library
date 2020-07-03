@@ -3,10 +3,11 @@ import Modal from '../composition/topping/Modal';
 import ToggleBurger from '../composition/topping/ToggleBurger';
 import '../assets/styles/Profile.css';
 import logo from '../assets/images/bookshelf.png'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import DefaultAva from '../assets/images/default-avatar.png'
+import axios from 'axios'
 
-function Profile(props) {
+const Profile = (props) => {
 
   //toggleBurger
   const [active, setActive] = useState(false);
@@ -16,7 +17,7 @@ function Profile(props) {
         setPopUp({...popUp, status: false})
         document.body.style.overflow = 'unset';
       }
-      console.log(props.location.state)
+      console.log(props)
   };
 
   //popUp add data
@@ -36,16 +37,18 @@ function Profile(props) {
       }
       setPopUp({...popUp, status: !popUp.status});
     } 
-    console.log(this.props)
   }
-
-  //avatar profile
+  
+  // avatar profile /////////////////////////////////////////////////////////
   const [avatar, setAvatar] = useState({
-    buffer: props.location.state.avatar
+    buffer: ``
   })
   if(avatar.buffer===''){
     setAvatar({...avatar, buffer: DefaultAva})
   }
+  ///////////////////////////////////////////////////////////////////////////
+  
+  
 
   
 
@@ -65,9 +68,10 @@ function Profile(props) {
             <li>Explore</li>
             <li>History</li>
             <li onClick={handlePopUp}>Add books</li>
+            <li style={{marginTop:'25%'}}>Logout</li>
           </ul>
         </div>
-        <Modal status={popUp.status} action={popUp.action} handlePopUp={handlePopUp}/>
+        <Modal status={popUp.status} action={popUp.action} handlePopUp={handlePopUp} />
       </div>
       </>
     )
@@ -87,7 +91,7 @@ function Profile(props) {
             </div>
           </div>
         </div>
-        <Modal status={popUp.status} action={popUp.action} handlePopUp={handlePopUp}/>
+        {/* <Modal status={popUp.status} action={popUp.action} handlePopUp={handlePopUp}/> */}
       </div>
       </>
     )
