@@ -9,7 +9,6 @@ class Modal extends Component{
         image: '',
         title: '',
         description: '',
-        token: '',
       }
   }
 

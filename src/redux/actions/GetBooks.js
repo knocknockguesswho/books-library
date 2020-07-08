@@ -6,7 +6,7 @@ export const getBooks = token =>{
     payload: axios(
       {
       method: 'GET',
-      url: 'http://localhost:3000/admin',
+      url: 'http://localhost:3000/user',
       headers: {
         Authorization: token
       }

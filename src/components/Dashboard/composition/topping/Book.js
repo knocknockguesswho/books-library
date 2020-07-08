@@ -161,7 +161,7 @@ class Book extends Component{
         <div style={main_modal}>
           <div style={description}>
             <div style={{width:'100%'}}>
-              <p style={{height:'30px', width:'78.953px', marginBottom:'1%', backgroundColor:'#FBCC38', borderRadius:'.8em', textAlign:'center', paddingTop:'.4%', color:'white '}}>Novel</p>
+              <p style={{height:'30px', width:'78.953px', marginBottom:'1%', backgroundColor:'#FBCC38', borderRadius:'.8em', textAlign:'center', paddingTop:'.4%', color:'white '}}>{this.props.data.type}</p>
               <h1 style={{fontWeight:'700', fontSize:'3rem'}}>{this.props.data.title}</h1>
               <h5 style={{fontWeight:'700'}}>30 Juni 2019</h5>
               <p style={{color:'#99D815', fontWeight:'600', fontSize:'2em', float:'right', transform:'translateY(-200%)'}}>Available</p>

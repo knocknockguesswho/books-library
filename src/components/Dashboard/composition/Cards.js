@@ -21,9 +21,13 @@ class Cards extends Component{
       (book)=>{
         if (this.props.Filter.isSearching!==false){
           return book.title.toLowerCase().indexOf(this.props.Filter.searchResult) !== -1
-        } else if(this.props.Filter.isFiltering!==false){
-          return book.genre.indexOf(this.props.Filter.filterResult) !== -1
-        } else{
+        } else if(this.props.Filter.isFilteringCategory!==false){
+          return book.genre.indexOf(this.props.Filter.filterType) !== -1
+        } else if(this.props.Filter.isFilteringDate!==false){
+          let date = new Date(book.created_at)
+          let created_at = date.getTime()
+          return created_at >= this.props.Filter.filterDateResult
+        } else {
           return book
         }
       }

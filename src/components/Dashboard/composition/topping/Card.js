@@ -21,7 +21,6 @@ const Card = (props) => {
       document.body.style.overflow = 'unset';
     }
     setDetail({...detail, status: !detail.status})
-    console.log(props)
   }
 
 
