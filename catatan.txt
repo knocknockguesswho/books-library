@@ -1,11 +1,12 @@
-get book detail from card onClick.
-make book details as page.
+TODO:
+1. filter data by time created
+2. create fulfilled genre database to be choosen by admin who wants to change the genre of given default genre
+3. change default genre, and author by admin
+4. borrow Book
+5. history of member; All books that they ever borrowed
 
 
 bugs:
-1.'Add Books' modal (found! on modal container height)
-2.closing 'Book' modal with opened 'Edit' modal. when back to open that closed 'Book' modal, the 'Edit' modal was still active (check all ternary operator that set element to be active state. modify it! || handlePopUp are using local state, not parent state)
-3.users can still clicking another elements even modal has popped up
 
 not-responsive:
 1. all modal position 
@@ -13,7 +14,3 @@ not-responsive:
 
 
 probs:
-1.TypeError: Cannot read property 'isLoggedin' of undefined while directly route to '/'
-2.carousel should be manually input image on 3 items of carousel
-2.CRUD Blocked by CORS
-3.carousel component's books state need to push first before it rendered to browser
