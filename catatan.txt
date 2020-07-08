@@ -16,3 +16,4 @@ probs:
 1.TypeError: Cannot read property 'isLoggedin' of undefined while directly route to '/'
 2.carousel should be manually input image on 3 items of carousel
 2.CRUD Blocked by CORS
+3.carousel component's books state need to push first before it rendered to browser

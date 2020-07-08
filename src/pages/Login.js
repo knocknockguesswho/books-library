@@ -9,7 +9,7 @@ class Login extends Component{
   render(){
     return(
         <>
-          <Authentication_Login/>
+          <Authentication_Login {...this.props}/>
         </>
     )
   }

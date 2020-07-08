@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import Profile from '../Dashboard/composition/Profile';
 import Navbar from '../Dashboard/composition/Navbar';
-import Carousel from '../Dashboard/composition/Carousel';
+import Carousel from './composition/Carousel';
 import Cards from './composition/Cards';
+// import axios from 'axios'
+// import { connect } from 'react-redux';
+// import { getBooks } from '../../redux/actions/GetBooks'
+// import { Logout } from '../../redux/actions/Auth'
 
 
 class Dashboard extends Component{
   constructor(props){
     super(props);
+    this.state = {
+      books: props
+    }
   }
   
   render(){
@@ -23,8 +30,8 @@ class Dashboard extends Component{
               marginTop: '2%'}
             }
           >
-            <Carousel {...this.props}/>
-            <Cards books={this.props.location.state.books} {...this.props}/>
+            {this.props.Books.isLoading ? 'Loading...' : <Carousel data={this.props.Books.data} {...this.props} />}
+            <Cards books={this.props.Books.data} {...this.props}/>
           </div>
       </div>
     )

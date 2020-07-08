@@ -10,8 +10,8 @@ const Card = (props) => {
   const [detail, setDetail] = useState({
     status: false,
     data: props.data,
-    username: props.location.state.username,
-    role: props.location.state.role,
+    username: props.username,
+    role: props.role,
     image: ''
   });
   const getBookDetail = ()=>{
@@ -21,7 +21,7 @@ const Card = (props) => {
       document.body.style.overflow = 'unset';
     }
     setDetail({...detail, status: !detail.status})
-    console.log(props.data)
+    console.log(props)
   }
 
 
@@ -89,7 +89,7 @@ const Card = (props) => {
       </div>
     </div>
     <div style={detail.status? detail_active : detail_inactive}>
-      <Book getBookDetail={getBookDetail} data={detail.data} role={detail.role} name={detail.username}/>
+      <Book getBookDetail={getBookDetail} data={detail.data} role={detail.role} name={detail.username} {...props}/>
     </div>
     </>
   )

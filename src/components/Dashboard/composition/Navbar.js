@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import '../assets/styles/Navbar.css';
 import logo from '../assets/images/bookshelf.png'
+import { Search, FilterInput } from '../../../redux/actions/Filter';
+import { connect } from 'react-redux'
 
 class Navbar extends Component{
   constructor(props){
     super(props);
     this.state ={
       collapsed_a: false,
-      collapsed_b: false
+      collapsed_b: false,
+      searchInput: '',
+      filterInput: ''
     }
   }
   menuDropdown_A=()=>{
@@ -22,18 +26,29 @@ class Navbar extends Component{
     })
   }
 
+  searchInput = (event)=> {
+    const SearchResult = event
+    this.props.Search(SearchResult)
+  }
+
+  filterInput = (filter) => ()=>{
+    this.props.FilterInput(filter)
+    this.menuDropdown_A();
+  }
+
+
   render(){
     return(
       <div className='navbar-container'>
 
         <div className='menu-container'>
           <div className='menu-a'>
-            <span onClick={this.menuDropdown_A}>All Categories &#9662;</span>
+            <span onClick={this.menuDropdown_A}>{this.props.Filter.isFiltering ? this.props.Filter.filterResult : 'All Categories'} &#9662;</span>
               <div className={this.state.collapsed_a==true?'submenu-a' : 'submenu-a inactive'}>
               <ul>
-                <li>Romance</li>
-                <li>Sci-Fi</li>
-                <li>Politic</li>
+                <li onClick={this.filterInput('Romance')} href='#display'>Romance</li>
+                <li onClick={this.filterInput('Technology')}>Technology</li>
+                <li onClick={this.filterInput('Politic')}>Politic</li>
               </ul>
               </div>
           </div>
@@ -52,7 +67,7 @@ class Navbar extends Component{
         
         <div className='search-input'>
             {/* <i class="fa fa-search" style={{opacity: '.3'}}></i> */}
-            <input type='text' name='search' placeholder='Search book' aria-label='Search' autoComplete='off'></input>
+            <input type='text' name='search' placeholder='Search book' value={this.props.Search.input} aria-label='Search' autoComplete='off' onChange={(event)=>this.searchInput(event.target.value)}></input>
         </div>
         {/* <div className='logo-book'>
           <img src={logo}></img>
@@ -62,4 +77,15 @@ class Navbar extends Component{
   }
 }
 
-export default Navbar;
+const mapStateToProps = (state)=>({
+  Auth: state.Auth,
+  Books: state.Books,
+  Filter: state.Filter
+});
+
+const mapDispatchToProps = { Search, FilterInput }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(Navbar)
