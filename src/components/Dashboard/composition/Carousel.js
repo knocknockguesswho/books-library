@@ -17,24 +17,9 @@ const Carousel = (props) => {
       prevSlide: 2,
       nextSlide: 1,
       books: props.data,
-      // display:[
-      //       {
-      //         image: props.data[0].image,
-      //         title: props.data[0].title,
-      //         author: props.data[0].author
-      //       },
-      //       {
-      //         image: props.data[1].image,
-      //         title: props.data[1].title,
-      //         author: props.data[1].author
-      //       },
-      //       {
-      //         image: props.data[2].image,
-      //         title: props.data[2].title,
-      //         author: props.data[2].author
-      //       }
-      // ]  
   })
+
+  
   const [isLoading, setIsLoading] = useState(true)
   
 

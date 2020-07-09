@@ -4,10 +4,6 @@ import React, { useState } from 'react'
 const FailPopUp = (props) =>{
 
 
-  // const [inactive, setInactive] = useState({
-  //   status: props.status
-  // });
-
 
 
   const popUp_inActive = {
@@ -56,17 +52,11 @@ const FailPopUp = (props) =>{
     float: 'right'
   }
 
+  const localHandlePopUp = () =>{
+    props.handlePopUp()
+    window.location.reload(false)
+  }
 
-
-    // switch (props.message) {
-    //   case 'delete':
-    //     <p>Data <b>{props.title}</b> berhasil dihapus!</p>
-    //   case 'register':
-    //     <p>Thank you for signing up.</p>
-    //   default:
-    //     break;
-    // }
-    // }
 
   return(
       
@@ -74,7 +64,7 @@ const FailPopUp = (props) =>{
       <div style={props.status ? popUp_active : popUp_inActive}>
         <div style={modal_container}>
           <div style={close_button}>
-          <p style={{cursor: 'pointer', height:'1em'}} onClick={props.handlePopUp}>&#10006;</p>
+          <p style={{cursor: 'pointer', height:'1em'}} onClick={localHandlePopUp}>&#10006;</p>
           </div>
           <div style={{marginTop:'10%'}}>
             <p style={{fontSize: '10rem',color: '#000'}}>&#10006;</p>

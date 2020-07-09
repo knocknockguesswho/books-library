@@ -1,5 +1,6 @@
 import React, { useState, Component } from 'react';
 import Book from '../topping/Book'
+import { connect } from 'react-redux'
 // import { Link } from 'react-router-dom'
 
 
@@ -84,7 +85,8 @@ const Card = (props) => {
       </div>
       <div className='book-caption' style={book_caption}>
         <p style={{textAlign:'center', marginTop:'2%', fontSize:'1.5em', fontWeight:'600'}}>{props.data.title}</p>
-        <div className='caption' style={{marginTop:'-5%', overflow:'hidden', whiteSpace:'pre', textOverflow:'ellipsis'}}>{props.data.description}</div>
+        <div className='caption' style={{marginTop:'-5%', overflow:'hidden', whiteSpace:'pre', textOverflow:'ellipsis', margin:'0 2%'}}>{props.data.description}</div>
+        {/* <h6 style={{textAlign:'center',color:'#99D815'}}>{props.Interface.isBorrowed? 'Borrowed' : 'Available'}</h6> */}
       </div>
     </div>
     <div style={detail.status? detail_active : detail_inactive}>
@@ -94,4 +96,8 @@ const Card = (props) => {
   )
 }
 
-export default Card;
+const mapStateToProps = state =>({
+  Interface: state.Interface
+})
+
+export default connect(mapStateToProps)(Card)

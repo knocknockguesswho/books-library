@@ -42,8 +42,9 @@ class LoginForm extends Component{
     this.props.Login(data).then(()=>{
       this.props.history.push('/', {isLoggedin: this.props.Auth.isLogin, username: this.props.Auth.username, role: this.props.Auth.role, avatar: this.props.Auth.avatar, token: this.props.Auth.token});
       console.log(this.props)
-      
-    });
+    }).catch((err)=>{
+      this.setState({status: true})
+    })
   }
   
   handlePopUp = () =>{
@@ -53,20 +54,6 @@ class LoginForm extends Component{
   componentDidMount() {}
   
   render(){
-    // if(this.props.Auth.data.isLogin===true){
-    //   return( 
-    //   <Redirect to={{
-    //     pathname: '/',
-    //     state: {
-    //       isLoggedin: this.state.isLoggedin,
-    //       username: this.state.username,
-    //       role: this.state.role,
-    //       avatar: this.state.avatar
-    //       // books: this.state.books
-    //     }
-    //   }}/>
-    //   )
-    // }
     return(
       <Container className="themed-container" fluid={true}>
         <Row>

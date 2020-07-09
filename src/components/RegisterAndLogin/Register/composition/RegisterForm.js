@@ -6,6 +6,9 @@ import axios from 'axios';
 import parse from 'html-react-parser';
 import FailPopup from '../../../Dashboard/composition/topping/FailPopup';
 import SuccessPopup from '../../../Dashboard/composition/topping/SuccessPopup';
+import { connect } from 'react-redux';
+import { Register } from '../../../../redux/actions/Auth'
+
 import { 
   Form, 
   FormGroup, 
@@ -36,30 +39,25 @@ class RegisterForm extends Component{
 
     registerAuth =(event)=>{
       event.preventDefault();
-      axios({
-        method: 'POST',
-        url: 'http://localhost:3000/auth/register',
-        data: {
-          fullname: this.state.fullname,
-          username: this.state.username,
-          password: this.state.password,
-          email: this.state.email,
-          role: this.handleRole(this.state.role)
-        }
-      })
+      const data = {
+        fullname: this.state.fullname,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+        role: this.handleRole(this.state.role)
+      }
+      this.props.Register(data)
       .then((res)=>{
         this.setState({
           message: parse(`Thank you <b>${this.state.fullname}</b> for register on our services.`),
           successPopUpStatus: true
         })
-        console.log(res);
       })
       .catch((err)=>{
         this.setState({
           message: parse(`Sorry <b>${this.state.fullname}</b> something bad happened.`),
           failPopUpStatus: true
         })
-        console.log(err.response);
       })
     }
 
@@ -139,4 +137,10 @@ class RegisterForm extends Component{
     }
 }
 
-export default RegisterForm;
+const mapStateToProps = state => ({
+  Auth: state.Auth
+})
+
+const mapDispatchToProps = { Register }
+
+export default connect(mapStateToProps,mapDispatchToProps)(RegisterForm)

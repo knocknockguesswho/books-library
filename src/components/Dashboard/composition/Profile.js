@@ -38,10 +38,12 @@ const Profile = (props) => {
       }
       setPopUp({...popUp, status: !popUp.status});
     } 
+    console.log(props)
   }
   
   // avatar profile /////////////////////////////////////////////////////////
   const [avatar, setAvatar] = useState({
+    username: props.Auth.data.fullname,
     buffer: ``
   })
   if(avatar.buffer===''){
@@ -69,10 +71,9 @@ const Profile = (props) => {
         <div className={active ? 'content-link' : 'content-link content-none'}>
           <ul className='avatar'>
             <li><img src={avatar.buffer}></img></li>
-            <li>{props.Auth.username}</li>
+            <li>{avatar.username}</li>
           </ul>
           <ul className='navigator'>
-            <li>Explore</li>
             <li>History</li>
             <li onClick={handlePopUp}>Add books</li>
             <li onClick={Logout} style={{marginTop:'25%'}}>Logout</li>

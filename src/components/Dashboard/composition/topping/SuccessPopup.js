@@ -56,13 +56,18 @@ const SuccessPopUp = (props) =>{
     float: 'right'
   }
 
+  const localHandlePopUp = () =>{
+    props.handlePopUp()
+    window.location.reload(false)
+  }
+
   return(
       
     <>
       <div style={props.status ? popUp_active : popUp_inActive}>
         <div style={modal_container}>
           <div style={close_button}>
-          <p style={{cursor: 'pointer', height:'1em'}} onClick={props.handlePopUp}>&#10006;</p>
+          <p style={{cursor: 'pointer', height:'1em'}} onClick={localHandlePopUp}>&#10006;</p>
           </div>
           <div style={{marginTop:'10%'}}>
             <i className="fa fa-check-circle" style={{fontSize: '10rem',color: 'rgb(0, 129, 75)'}}></i>
