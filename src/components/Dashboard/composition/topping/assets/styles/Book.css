@@ -1,0 +1,4 @@
+.borrow-button:active{
+    opacity: .8;
+    user-select: none;
+}

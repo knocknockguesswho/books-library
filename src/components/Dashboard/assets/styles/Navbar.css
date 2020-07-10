@@ -1,6 +1,6 @@
 .navbar-container{
     display: flex;
-    position: relative;
+    position: fixed;
     width: 100vw;
     background-color: #fff;
     display: flex;
@@ -132,7 +132,9 @@
 
 .logo-book{
     position: relative;
-    right: 0;
+    left: 50%;
+    display: inline-block;
+    display: flex;
 }
 
 @keyframes dropdown_menu {

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getBooks } from '../redux/actions/GetBooks'
+import { getBooks, GetAllGenre, GetAllAuthor } from '../redux/actions/GetBooks'
 import { Logout } from '../redux/actions/Auth'
 
 class Home extends Component{
@@ -15,6 +15,16 @@ class Home extends Component{
     }
   }
 
+  getAllAuthor = ()=>{
+    const token = this.props.Auth.data.token;
+    this.props.GetAllAuthor(token)
+  }
+
+  getAllGenre = ()=>{
+    const token = this.props.Auth.data.token;
+    this.props.GetAllGenre(token)
+  }
+
   getBooks = ()=>{
     const token = this.props.Auth.data.token
     this.props.getBooks(token);
@@ -22,11 +32,13 @@ class Home extends Component{
 
   async componentDidMount() {
     await this.getBooks();
+    await this.getAllGenre();
+    await this.getAllAuthor();
   }
   
   render(){
     if(this.props.Auth.isLogin==false){
-      this.props.history.push('/')
+      this.props.history.push('/login')
     }
     return(
       <>
@@ -41,7 +53,7 @@ const mapStateToProps = state => ({
   Books: state.Books
 });
 
-const mapDispatchToProps = { getBooks, Logout };
+const mapDispatchToProps = { getBooks, Logout, GetAllGenre, GetAllAuthor };
 
 export default connect(
   mapStateToProps,

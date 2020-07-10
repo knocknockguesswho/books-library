@@ -25,9 +25,9 @@ class Dashboard extends Component{
           <div className='main' 
             style={
               {position:'relative', 
-              left:'7.5%', 
+              left:'10%', 
               width: '85%', 
-              marginTop: '2%'}
+              marginTop: '10%'}
             }
           >
             {this.props.Books.isLoading ? 'Loading...' : <Carousel data={this.props.Books.data} {...this.props} />}

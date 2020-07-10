@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import FailPopup from '../../../Dashboard/composition/topping/FailPopup';
+import parse from 'html-react-parser';
 import { connect } from 'react-redux';
+import { AddBook, EditBook } from '../../../../redux/actions/Interface';
 
 class Modal extends Component{
   constructor(props){
@@ -9,90 +11,111 @@ class Modal extends Component{
         image: '',
         title: '',
         description: '',
+        genre: 0,
+        author: 0,
+        errorMsg_local: '',
+        isErrorStatus: false
       }
   }
 
   //Add Books
   handleAddData = (event)=>{
     event.preventDefault();
+    const sizeLimit = 500000
+    const fileType = 'Jpeg or PNG'
     const token = this.props.Auth.data.token;
     const formData = new FormData();
     formData.append('title', this.state.title);
     formData.append('description', this.state.description);
+    formData.append('genre', parseInt(this.state.genre));
+    formData.append('author', parseInt(this.state.author));
     formData.append('image', this.state.image[0]);
-    axios({
-      method: 'POST',
-      url: 'http://localhost:3000/admin/post/book_table',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': token
-      }
-    })
-    .then((res)=>{
-      this.props.handlePopUp();
-      console.log(res)
-      window.location.reload(false);
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    if(this.state.image[0].size>sizeLimit){
+      this.setState({
+        ...this.state,
+        isErrorStatus: true,
+        errorMsg_local: parse(`Minimum file size: <b>${sizeLimit/1000}kb</b>.`)
+      })
+      throw Error
+    } else {
+      this.setState({
+        ...this.state,
+        isErrorStatus: false
+      })
+      this.props.AddBook(token, formData)
+      .then((res)=>{
+          this.props.handlePopUp();
+        console.log(res)
+        window.location.reload(false);
+      })
+      .catch((Error)=>{
+        console.log(Error.response)
+      })
+    }
   }
 
-  
   //Edit Books
   handleEditData = (event)=>{
     event.preventDefault();
-    const token = this.props.Auth.data.token
-    const formData = new FormData();
-    formData.append('title', this.state.title);
-    formData.append('description', this.state.description);
-    formData.append('image', this.state.image[0]);
-    axios({
-      method: 'PUT',
-      url: `http://localhost:3000/admin/${this.props.data.data.id}`,
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': token
+    if(this.props.Auth.data.role===1){
+      const sizeLimit = 500000
+      const fileType = 'Jpeg or PNG'
+      const token = this.props.Auth.data.token
+      const id = this.props.data.data.id
+      const formData = new FormData();
+      formData.append('title', this.state.title);
+      formData.append('description', this.state.description);
+      formData.append('genre', parseInt(this.state.genre));
+      formData.append('author', parseInt(this.state.author));
+      formData.append('image', this.state.image[0]);
+      if(this.state.image[0].size>sizeLimit){
+        this.setState({
+          ...this.state,
+          isErrorStatus: true,
+          errorMsg_local: parse(`Minimum file size: <b>${sizeLimit/1000}kb</b>.`)
+        })
+        throw Error
       }
-    })
-    .then((res)=>{
-      this.props.handlePopUp();
-      console.log(res)
-      window.location.reload(false);
-    })
-    .catch((err)=>{
-      console.log(err)
-      console.log(this.props)
-    })
+      this.props.EditBook(token, formData, id)
+      .then((res)=>{
+        this.props.handlePopUp();
+        console.log(res)
+        window.location.reload(false);
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
   }
-
-
+  
   decideCRUD = () =>{
-    if(this.props.action == 'Add Data'){
+    if(this.props.action === 'Add Data'){
       return this.handleAddData
-    } else if(this.props.action == 'Edit Data'){
-      if(this.state.image=='' && this.props.status==true){
+    } else if(this.props.action === 'Edit Data'){
+      if(this.state.image==='' && this.props.status===true){
         this.setState({image: this.props.data.data.image})
       }
-      if(this.state.title=='' && this.props.status==true){
+      if(this.state.title==='' && this.props.status===true){
         this.setState({title: this.props.data.data.title})
       }
-      if(this.state.description=='' && this.props.status==true){
+      if(this.state.description==='' && this.props.status===true){
         this.setState({description: this.props.data.data.description})
+      }
+      if(this.state.genre===0 && this.props.status===true){
+        this.setState({genre: this.props.data.data.genre_id})
+      }
+      if(this.state.author===0 && this.props.status===true){
+        this.setState({author: this.props.data.data.author_id})
       }
       return this.handleEditData
     }
   }
 
-
-
-  // componentDidMount(){
-  //   if(this.state.token===''){
-  //     this.setState({token: this.props.data.Auth.data.token})
-  //   }
-  // }
+  handlePopUp = () =>{
+    this.setState({
+      isErrorStatus: !this.state.isErrorStatus
+    })
+  }
 
   render(){
 
@@ -107,7 +130,6 @@ class Modal extends Component{
       height:'950px',
       top: '7%',
       left: '450px'
-      
     }
     
     const popUp_active = {
@@ -158,8 +180,7 @@ class Modal extends Component{
     const form_label = {
       width:'20%',
       height:'100%',
-      fontSize:'1.5em',
-      paddingTop: '1%'
+      fontSize:'1.5em'
     }
 
     const form_container = {
@@ -178,10 +199,14 @@ class Modal extends Component{
       textAlign: 'center',
       cursor: 'pointer'
     }
-    
+  
+
     if(this.props.action=='Add Data'){
       return(
         <>
+          <div style={{position:'absolute', top:'15%', left:'45%'}}>
+            <FailPopup message={this.state.errorMsg_local} status={this.state.isErrorStatus} handlePopUp={this.handlePopUp}/>
+          </div>
           <div style={this.props.status ? popUp_active : popUp_inActive}>
             <div style={modal_container}>
               <div style={modal_input}>
@@ -194,27 +219,52 @@ class Modal extends Component{
                   <div style={{height:'10%', display: 'flex', flexDirection:'row'}}>
                     <div style={form_label}>Image URL</div>
                     <div style={form_container}>
-                      <input type='file' placeholder='Image URL...' autoComplete='off' onChange={(e)=>this.setState({image: e.target.files})}></input>
+                      <input type='file' placeholder='Image URL...' autoComplete='off' onChange={(e)=>this.setState({image: e.target.files})} accept="image/*" required></input>
                     </div>
                   </div>
+
                   <div style={{height:'10%', display: 'flex', flexDirection:'row'}}>
                     <div style={form_label}>Title</div>
                     <div style={form_container}>
-                    <input type='text' placeholder='Title...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250'}} autoComplete='off' value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})}></input>
+                    <input type='text' placeholder='Title...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250'}} autoComplete='off' value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})} required></input>
                     </div>
                   </div>
-                  <div style={{height:'45%', lineHeight:'-100%',display: 'flex', flexDirection:'row'}}>
+                  
+                  <div style={{height:'30%', lineHeight:'-100%',display: 'flex', flexDirection:'row'}}>
                     <div style={form_label}>Description</div>
                     <div style={form_container}>
-                    <textarea type='text' placeholder='Description...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250', resize:'none'}} autoComplete='off' value={this.state.description} onChange={(e)=>this.setState({description: e.target.value})}></textarea>
+                    <textarea type='text' placeholder='Description...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250', resize:'none'}} autoComplete='off' value={this.state.description} onChange={(e)=>this.setState({description: e.target.value})} required></textarea>
                     </div>
                   </div>
+          
+                  <div style={{height:'5%', display:'flex', flexDirection:'row'}}>
+                    <div style={form_label}>Genre</div>
+                    <div style={form_container}>
+                      <select onChange={(e)=>this.setState({genre: parseInt(e.target.value)})}>
+                        {this.props.Books.genres.map((genre)=>{
+                          return <option value={genre.id}>{genre.name}</option>
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div style={{height:'5%', display:'flex', flexDirection:'row'}}>
+                    <div style={form_label}>Author</div>
+                    <div style={form_container}>
+                      <select onChange={(e)=>this.setState({author: parseInt(e.target.value)})}>
+                        {this.props.Books.authors.map((author)=>{
+                          return <option value={author.id}>{author.name}</option>
+                        })}
+                      </select>
+                    </div>
+                  </div>
+
                   <div style={{height:'10%', marginTop:'1%', textAlign:'right'}}>
                     <input type='submit' style={save_button} value='Save'></input>
                   </div>
                 </form>
               </div>
             </div>
+            
           </div>
         </>
       )
@@ -225,10 +275,8 @@ class Modal extends Component{
             <div style={modal_container}>
               <div style={modal_input}>
                 <div style={close_button} onClick={this.props.handlePopUp}>&#10006;</div>
-  
-                <form style={form_style} 
+                <form style={form_style}
                 onSubmit={this.decideCRUD()}>
-  
                   <h3 style={{marginBottom:'5%'}}>{this.props.action}</h3>
                   <div style={{height:'10%', display: 'flex', flexDirection:'row'}}>
                     <div style={form_label}>Image URL</div>
@@ -242,10 +290,30 @@ class Modal extends Component{
                     <input type='text' placeholder='Title...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250'}} autoComplete='off' value={this.state.title} onChange={(e)=>this.setState({title: e.target.value})}></input>
                     </div>
                   </div>
-                  <div style={{height:'45%', lineHeight:'-100%',display: 'flex', flexDirection:'row'}}>
+                  <div style={{height:'30%', lineHeight:'-100%',display: 'flex', flexDirection:'row'}}>
                     <div style={form_label}>Description</div>
                     <div style={form_container}>
                     <textarea type='text' placeholder='Description...' style={{width:'100%', height:'80%', padding:'0 2%', borderRadius:'.5em', border:'.8px solid #42424250', resize:'none'}} autoComplete='off' value={this.state.description} onChange={(e)=>this.setState({description: e.target.value})}></textarea>
+                    </div>
+                  </div>
+                  <div style={{height:'5%', display:'flex', flexDirection:'row'}}>
+                    <div style={form_label}>Genre</div>
+                    <div style={form_container}>
+                      <select onChange={(e)=>this.setState({genre: e.target.value})}>
+                        {this.props.Books.genres.map((genre)=>{
+                          return <option value={genre.id}>{genre.name}</option>
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div style={{height:'5%', display:'flex', flexDirection:'row'}}>
+                    <div style={form_label}>Author</div>
+                    <div style={form_container}>
+                      <select onChange={(e)=>{this.setState({author: e.target.value})}}>
+                        {this.props.Books.authors.map((author)=>{
+                          return <option value={author.id}>{author.name}</option>
+                        })}
+                      </select>
                     </div>
                   </div>
                   <div style={{height:'10%', marginTop:'1%', textAlign:'right'}}>
@@ -262,10 +330,13 @@ class Modal extends Component{
 }
 
 const mapStateToProps = state => ({
-  Auth: state.Auth
+  Auth: state.Auth,
+  Books: state.Books
 });
 
+const mapDistpatchToProps = { AddBook, EditBook }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDistpatchToProps
   )(Modal)

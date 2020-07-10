@@ -13,3 +13,34 @@ export const getBooks = token =>{
     })
   }
 }
+
+
+//get genre for entry books
+export const GetAllGenre = token =>{
+  return{
+    type: 'GETALLGENRE',
+    payload: axios(
+      {
+        method: 'GET',
+        url: 'http://localhost:3000/admin/genre',
+        headers: {
+          Authorization: token
+        }
+      })
+  }
+}
+
+//get authors for entry books
+export const GetAllAuthor = token =>{
+  return{
+    type: 'GETALLAUTHOR',
+    payload: axios(
+      {
+        method: 'GET',
+        url: 'http://localhost:3000/admin/author',
+        headers: {
+          Authorization: token
+        }
+      })
+  }
+}

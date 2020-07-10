@@ -1,11 +1,5 @@
 import React, { useState, Component, useEffect } from 'react';
-import { Redirect } from 'react-router-dom'
 import '../assets/styles/Carousel.css';
-import { Button } from 'reactstrap';
-
-import { connect } from 'react-redux';
-import { getBooks } from '../../../redux/actions/GetBooks'
-import { Logout } from '../../../redux/actions/Auth'
 
 
 

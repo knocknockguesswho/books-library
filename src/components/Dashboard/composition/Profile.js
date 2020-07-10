@@ -5,6 +5,7 @@ import '../assets/styles/Profile.css';
 import logo from '../assets/images/bookshelf.png'
 import { Link } from 'react-router-dom';
 import DefaultAva from '../assets/images/default-avatar.png';
+import History from '../composition/topping/History'
 import { connect } from 'react-redux';
 import { Logout } from '../../../redux/actions/Auth';
 import { withRouter } from 'react-router-dom';
@@ -27,6 +28,18 @@ const Profile = (props) => {
     status: false,
     action: 'Add Data'
   });
+
+  //modal History
+  const [modalHistory, setModalHistory] = useState(false)
+  const getHistoryDetail = ()=>{
+    if(modalHistory===false){
+      document.body.style.overflow = 'hidden';
+    } else{
+      document.body.style.overflow = 'unset';
+    }
+    setModalHistory(!modalHistory)
+  }
+
   const handlePopUp = () =>{
     if(popUp.role===1){
       if(popUp.status===false){
@@ -57,9 +70,20 @@ const Profile = (props) => {
     props.history.push("/login")
   }
 
-  console.log(props.Auth)
+  const detail_active = {
+    visibility:'visible',
+    position:'fixed', 
+    width:'100vw', 
+    height:'992px', 
+    top:'0', 
+    left:'0', 
+    zIndex:'999'
+  }
 
-  
+  const detail_inactive = {
+    visibility: 'hidden',
+    display: 'none'
+  }
 
   if(props.Auth.isLogin===true){
     return(
@@ -74,12 +98,15 @@ const Profile = (props) => {
             <li>{avatar.username}</li>
           </ul>
           <ul className='navigator'>
-            <li>History</li>
+            <li onClick={getHistoryDetail}>History</li>
             <li onClick={handlePopUp}>Add books</li>
             <li onClick={Logout} style={{marginTop:'25%'}}>Logout</li>
           </ul>
         </div>
         <Modal status={popUp.status} action={popUp.action} handlePopUp={handlePopUp} data={props.location}/>
+      </div>
+      <div style={modalHistory? detail_active : detail_inactive}>
+        <History getHistoryDetail={getHistoryDetail}/>
       </div>
       </>
     )

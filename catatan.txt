@@ -1,14 +1,13 @@
 TODO:
-1. filter data by time created ###DONE###
-2. create fulfilled genre database to be choosen by admin who wants to change the genre of given default genre
+1. pagination
+2. create fulfilled genre database table to be choosen by admin who wants to change the genre of given default genre
 3. change default genre, and author by admin
-4. borrow Book
+4. history of member; All books that they ever borrowed + Return Book
 
 
-5. history of member; All books that they ever borrowed
-6. time limit of borrowing books
-7. additional charge for late returning books
-8. rating of admin
+5. time limit of borrowing books
+6. additional charge for late returning books
+7. rating of admin
 
 
 bugs:

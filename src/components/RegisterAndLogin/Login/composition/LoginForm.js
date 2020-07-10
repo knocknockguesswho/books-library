@@ -65,7 +65,7 @@ class LoginForm extends Component{
           </Col>
           <Col md='5' className='main-container'>
             <div className='form-container'>
-              <div className='bookshelf'><Link to='/'><img src={Bookshelf}></img></Link></div>
+              <div className='bookshelf'><img src={Bookshelf}></img></div>
               <div className='login-title'>
                 <h1 style={{fontWeight: '700', color: '#424242', fontSize: "50px"}}>Login</h1>
                 <span style={{fontWeight: '600'}}>Welcome Back, Please Login to your account</span>

@@ -39,14 +39,15 @@ const Auth = (state=initialState, action)=>{
         ...state,
         isLoading: false,
         isError: true,
-        errorMsg: action.payload.response.data
+        errorMsg: action.payload.response.data.data[0]
       }
     case "REGISTER_FULFILLED":
       return {
         ...state,
         isLoading: false,
         isLogin: true,
-        isRegistered: true
+        isRegistered: true,
+        data: action.payload.data.data[0]
       }
     case "LOGOUT_FULFILLED":
       return {

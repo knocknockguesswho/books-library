@@ -9,7 +9,7 @@ import { BorrowBook, DeleteBook } from '../../../../redux/actions/Interface'
 
 
 
-class Book extends Component{
+class History extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -67,11 +67,10 @@ class Book extends Component{
   }
 
   backHome = () =>{
-    this.props.getBookDetail()
-    this.setState({
-      editStatus: false
-    })
-    console.log(this.props)
+    this.props.getHistoryDetail()
+    // this.setState({
+    //   editStatus: false
+    // })
   }
 
   borrowBook = () =>{
@@ -189,48 +188,14 @@ class Book extends Component{
       display: 'flex',
       flexDirection: 'column'}}>
         <div style={banner}>
-        <div style={{width:'100%'}}>
-          <div onClick={this.backHome} style={back_home}>
-            <i className="fa fa-arrow-left" style={{verticalAlign:'-35%', color:'#424242'}}> </i>
-          </div>
-          <div style={edit__delete}>
-            <div style={{margin:'0 5%', cursor:'pointer'}} onClick={this.handlePopUpEdit}>
-              Edit
-            </div>
-            <div style={{margin:'0 5%', cursor:'pointer'}} onClick={this.handleDeleteData}>
-              Delete
+          <div style={{width:'100%'}}>
+            <div onClick={this.backHome} style={back_home}>
+              <i className="fa fa-arrow-left" style={{verticalAlign:'-35%', color:'#424242'}}> </i>
             </div>
           </div>
         </div>
-          <img src={`http://localhost:3000/uploads/${this.props.data.image}`} style={banner_image}></img>
-        </div>
-        <div style={main_modal}>
-          <div style={description}>
-            <div style={{width:'100%'}}>
-              <p style={{height:'30px', width:'78.953px', marginBottom:'1%', backgroundColor:'#FBCC38', borderRadius:'.8em', textAlign:'center', paddingTop:'.4%', color:'white '}}>{this.props.data.type}</p>
-              <h1 style={{fontWeight:'700', fontSize:'3rem'}}>{this.props.data.title}</h1>
-              <h5 style={{fontWeight:'700'}}>30 Juni 2019</h5>
-              <p style={{color:'#99D815', fontWeight:'600', fontSize:'2em', float:'right', transform:'translateY(-200%)'}}>{this.props.data.status}</p>
-            </div>
-            <p style={{marginTop:'2%', fontSize:'1.2em', fontWeight:'500'}}>{this.props.data.description}</p>
-          </div>
-          <div style={borrow_button_container}>
-            <img src={`http://localhost:3000/uploads/${this.props.data.image}`} style={{maxWidth:'250px', backgroundColor:'#FBCC38', margin:'0 auto', boxShadow: '0 4px 6px 0 rgba(0, 0, 0, .3)', borderRadius:'.8em'}}></img>
-            <div className='borrow-button' onClick={this.borrowBook} style={{height:'50px', width:'150px', backgroundColor:'#FBCC38', margin:'0 auto', position:"relative", bottom:'-250px', color:'white', paddingTop:'3%', borderRadius:'.8em', boxShadow: '0 2px 6px 0 rgba(0, 0, 0, .3)', cursor:'pointer'}}>Borrow</div>
-          </div>
-        </div>
-        <Modal status={this.state.editStatus} action={this.state.action} handlePopUp={this.handlePopUpEdit} data={this.props}/>
-        <SuccessPopUp title={this.props.data.title} 
-        status={this.state.deleteStatus} 
-        handlePopUp={this.handlePopUpDelete}
-        message={parse(`Data <b>${this.props.data.title}</b> berhasil dihapus!`)}
-        />
-        <SuccessPopUp title={this.props.data.title} 
-        status={this.state.borrowStatus} 
-        handlePopUp={this.handlePopUpBorrow}
-        message={parse(`Buku <b>${this.props.data.title}</b> berhasil dipinjam!`)}
-        />
-        <FailPopup message={this.state.message} status={this.state.isError_local} handlePopUp={this.handleFailPopUp}/>
+        
+        
       </div>
       </>
     )
@@ -247,4 +212,4 @@ const mapDispatchToProps = { BorrowBook, DeleteBook }
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-  )(Book)
+  )(History)

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../assets/styles/RegisterForm.css';
 import Bookshelf from '../assets/images/bookshelf.png';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import parse from 'html-react-parser';
 import FailPopup from '../../../Dashboard/composition/topping/FailPopup';
 import SuccessPopup from '../../../Dashboard/composition/topping/SuccessPopup';
@@ -91,7 +90,7 @@ class RegisterForm extends Component{
               </Col>
               <Col md='5' className='main-container'>
                 <div className='form-container'>
-                  <div className='bookshelf'><Link to='/'><img src={Bookshelf}></img></Link></div>
+                  <div className='bookshelf'><img src={Bookshelf}></img></div>
                   <div className='register-title'>
                     <h1 style={{fontWeight: '700', color: '#424242', fontSize: "50px"}}>Register</h1>
                     <span style={{fontWeight: '600'}}>Welcome Back, Please Register to create account</span>

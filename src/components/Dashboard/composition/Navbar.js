@@ -15,6 +15,9 @@ class Navbar extends Component{
     }
   }
   menuDropdown_A=()=>{
+    if(this.state.collapsed_b===true){
+      this.setState({collapsed_b: false})
+    }
     this.setState({
       collapsed_a: !this.state.collapsed_a
     })
@@ -22,6 +25,9 @@ class Navbar extends Component{
   }
   
   menuDropdown_B=()=>{
+    if(this.state.collapsed_a===true){
+      this.setState({collapsed_a: false})
+    }
     this.setState({
       collapsed_b: !this.state.collapsed_b
     })
@@ -99,9 +105,14 @@ class Navbar extends Component{
             {/* <i class="fa fa-search" style={{opacity: '.3'}}></i> */}
             <input type='text' name='search' placeholder='Search book' value={this.props.Search.input} aria-label='Search' autoComplete='off' onChange={(event)=>this.searchInput(event.target.value)}></input>
         </div>
-        {/* <div className='logo-book'>
-          <img src={logo}></img>
-        </div> */}
+        <div className='logo-book'>
+        <div style={{width:'max-content', textAlign:'right'}}>
+          <img src={logo} style={{width:'70%', marginTop:'5%'}}></img>
+        </div>
+        <div style={{float:'right', marginTop:'15%'}}>
+          <h4 style={{fontSize:'2em', fontWeight:'700', color:'#424242'}}>Library</h4>
+        </div>
+        </div>
       </div>
     )
   }
