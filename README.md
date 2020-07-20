@@ -68,15 +68,76 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-### DEPENDENCIES
+## Screenshot
 
-"axios": "^0.19.2",
-"bootstrap": "^4.5.0",
-"html-react-parser": "^0.13.0",
-"react": "^16.13.1",
-"react-dom": "^16.13.1",
-"react-router-dom": "^5.2.0",
-"react-scripts": "3.4.1",
-"reactstrap": "^8.4.1"
+
+#### `Login Page`
+![](https://i.imgur.com/974GLms.jpg)
+
+#### `Login Failed`
+![](https://i.imgur.com/n2XwrFE.jpg)
+
+#### `Signup Success`
+![](https://i.imgur.com/SqWVOrv.jpg)
+
+#### `Signup Failed`
+![](https://i.imgur.com/uWJWaF8.jpg)
+
+#### `Main Dashboard`
+![](https://i.imgur.com/2ViVRFC.jpg)
+
+#### `Carousel Slide`
+![](https://i.imgur.com/JOXaLap.png)
+
+#### `Profile`
+![](https://i.imgur.com/edVCkLp.jpg)
+
+#### `Add Books Feature For Admin`
+![](https://i.imgur.com/cdUNNEB.png)
+
+#### `Book Detail on Card Click`
+![](https://i.imgur.com/NiL1Zik.png)
+
+#### `Edit Book`
+![](https://i.imgur.com/ffYqMW3.jpg)
+
+#### `Borrow Book`
+![](https://i.imgur.com/U3r5O6V.png)
+
+#### `Borrowed Book Status`
+![](https://i.imgur.com/coCXAIx.jpg)
+
+#### `Failed Borrowing Book`
+![](https://i.imgur.com/2uB2J6H.png)
+
+#### `Filter By Genre`
+![](https://i.imgur.com/MuUkhZF.jpg)
+
+#### `Filter By Time Posted`
+![](https://i.imgur.com/C9QOuHy.jpg)
+
+#### `Search Book`
+![](https://i.imgur.com/uOzUKyW.png)
+
+
+
+
+## DEPENDENCIES
+
+#### "axios": "^0.19.2",
+
+#### "bootstrap": "^4.5.0",
+
+#### "html-react-parser": "^0.13.0",
+
+#### "react": "^16.13.1",
+
+#### "react-dom": "^16.13.1",
+
+#### "react-router-dom": "^5.2.0",
+
+#### "react-scripts": "3.4.1",
+
+#### "reactstrap": "^8.4.1"
 
 **Note: bootstrap and reactstrap will no longer be used by this app**
