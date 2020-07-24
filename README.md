@@ -138,6 +138,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 #### "react-scripts": "3.4.1",
 
-#### "reactstrap": "^8.4.1"
+#### "reactstrap": "^8.4.1",
+
+#### "redux": "^4.0.5",
+
+#### "redux-logger": "^3.0.6",
+
+####"redux-persist": "^6.0.0",
+
+####"redux-promise-middleware": "^6.1.2"
 
 **Note: bootstrap and reactstrap will no longer be used by this app**
